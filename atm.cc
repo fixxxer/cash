@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <string>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ void printBalance(double savings);
 Postcondition: print the value of the parameter.
 */
 
-int readInput();
+string readInput();
 /*Precondition: prints menu choices and prompts the user to enter number of menu choice
 Postcondition: returns valid menu choice
 */
@@ -30,8 +31,7 @@ Postcondition: return updated account balance
 int main()
 {
     double savings = 0, amount;
-    int choice;
-    int exit = 0;
+    string choice;
     string key;
     do
     {
@@ -40,12 +40,8 @@ int main()
         system("clear");
         choice = readInput();
 
-        switch(choice)
-        {
-            case 0:
-                break;
-            case 1:
-                cout <<"How much would you like to deposit? $";
+        if ( choice ==  "1" ) {
+        	cout <<"How much would you like to deposit? $";
                 cin>> amount;
                 if ( amount < 10000){
                     savings = deposit(savings, amount);
@@ -55,22 +51,20 @@ int main()
                     while (key != "c")
                     cin>>key;
                 }
-                break;
-            case 2:
+	}
+        else if ( choice == "2" ) {
                 printBalance(savings);
                 cout <<"Press [c] to continue\n";
                 while (key != "c")
                     cin>>key;
-                break;
-            case 3:
+	}         
+        else if ( choice ==  "3" ) {
                 withdraw(savings);
-                break;
-            case 4:
-                exit=1;
-                break;
-        }
-
-    }while(!exit); 
+	}
+        else if ( choice == "4" ) {
+                key="e";
+	}
+    }while(key != "e"); 
     return 0;
 }
 
@@ -83,10 +77,10 @@ void printBalance(double savings)//function to print balance
     cout<<"Your savings balance is: $" << savings <<"\n\n";
 }
 
-int readInput()
+string readInput()
 {
 
-    int choice;
+    string choice;
     cout<<" What would you like to do?\n\n";
     cout<<"(0) Home\n";
     cout<<"(1) Deposit\n";
@@ -102,23 +96,52 @@ int readInput()
 double withdraw(double& balance)//function for withdrawing
 {
     double withdraw = 0;
+    int p1 = 0, p2 = 0, p3 = 0, p4 = 0, p5 = 0;
+    int coins = 0;
+    string key = "x";
     do
     {
         cout<<"Enter the amount you would like to withdraw: ";//ask for amount to withdraw
         cin >> withdraw;//stores input
     }while(withdraw < 0);
     //do while loop ensures not negatives are being inputted
-
+    
     if (withdraw <= balance)
     {
+        coins = (int)withdraw;
+        cout<<"Total amount of withdraw: "<<coins<<endl;
+        cout<<"Bills of 500 pesos: "<<coins / 500<<endl;
+        coins = coins % 500;
+        cout<<"Bills of 200 pesos: "<<coins / 200<<endl;
+        coins = coins % 200;
+        cout<<"Bills of 100 pesos: "<<coins / 100<<endl;
+        coins = coins % 100;
+        cout<<"Bills of  50 pesos: "<<coins / 50<<endl;
+        coins = coins % 50;
+        cout<<"Coins of  20 pesos: "<<coins / 20<<endl;
+        coins = coins % 20;
+        cout<<"Coins of  10 pesos: "<<coins / 10<<endl;
+        coins = coins % 10;
+        cout<<"Coins of   5 pesos: "<<coins / 5<<endl;
+        coins = coins % 5;
+        cout<<"Coins of   1 pesos: "<<coins<<endl;
+    
+        cout <<"'\nPress [c] to continue\n";
+        while (key != "c")
+            cin>>key;
+        
         balance = balance - withdraw; //updates balance by subtracted balance from amount wished to withdraw
         return balance;
     } 
     else
     {
         cout<<"You do not have enough money in your account for this transaction\n";
-    }//if loop to prevent overdrafts
+        cout <<"'\nPress [c] to continue\n";
+        while (key != "c")
+            cin>>key;
+    
 
+    }//if loop to prevent overdrafts
 }
 
 double deposit(double balance, double& amount)//function for deposits
