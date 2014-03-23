@@ -1,0 +1,111 @@
+﻿Linux User
+
+1.- What is your experience with Linux?
+
+Over 15 years as user and programmer. 
+
+2.- For what reason do you use Linux?
+
+For work and as personal machine.
+
+3.- What distributions you use or have used?
+
+In chronological order: Slackware, Red Hat, Mandrake, SUSE, Debian, Ubuntu, openSUSE. Also RHES and SLES only for work.
+
+4.- What are your top 10 commands for daily use?
+
+vi, ssh, screen, cp, mv, ls, find, grep, rsync, perl, clusterssh, gcc, pidgin, chrome, git, svn.  
+
+
+GIT User
+
+1.- Do you have public repositories? name some of them if you said yes
+
+Yes, I have. The links are:
+
+https://github.com/fixxxer/cash
+http://repo.or.cz/w/siplcs.git/search/mob?s=Anibal+Avelar;st=author
+http://repo.or.cz/w/idesk.git/shortlog/refs/heads/mob
+
+
+2.- For what purpose would you use branches?
+
+The most common use is for separating projects from a common code base. The purpose could be for separating fixes, features, experimental code, new releases, etc.
+
+3.- How do you deal with merge conflicts?
+
+Depends of the type of conflicts for example this scenarios:
+
+1- Could be a conflict due to two files has differents changes in the sames lines but both changes are correct (edit collision). 
+In this case we need to check the git status:
+# git status
+After we need to check what file has the problem, fix to hand, and commit the changes:
+# git commit -m "Merged master fixed conflict"
+
+2.- Could be somebody deleted a file who has modified for somebody else, but we knows the file should exists. 
+First we add the deleted file:
+# git add deleted.file
+After we commit the change:
+# git commit -m “Added the file again”
+Check the change was made in the branch:
+# git show | head
+
+
+3.- Could be the file was correct deleted then we remove the file again from the repository:
+# git rm file.conflict
+We commit the change:
+# git commit -m “Remove again the file”
+
+But there are another differents circumstances, we need to manage each case in different way.
+
+
+C / C++
+
+Questions
+
+1.- What is your favorite compiler?
+
+gnu cc (gcc) including g++
+
+2.- Do you know of any other compilers? name them if you said yes
+
+javac, mono (c# compiler), visual c++ (little bit).
+
+3.- What is your favorite debugger?
+
+gdb
+
+4.- How do you deal with memory leaks, is there any tool in particular that you use?
+
+valgrind
+
+5.- Have you written application for multiple platform use? explain what it does if you said yes
+
+I have written code in Java, the java code is multiple platform due to the java virtual machine. 
+Also I have compiled C code under Windows using cygwin.
+
+
+Exercise
+
+1.- Create a C or C++ application that complete the next list of requirements:
+a) The application must show a menu with the following options [Home, Deposit, Balance, Withdrawal, Exit]
+b) The user will be able to select each of the menus using a number or a letter
+c) The menu must be always render again at the end of any transaction except on exit
+d) The menu exit quits the application
+e) The menu Deposit will ask the user for an amount of money to deposit, MAX 10,000 pesos
+f) The menu Balance will print out the actual balance for the user
+g) The menu Withdrawal will ask for the user for an amount of money, once the money is entered;
+	- Print out how the machine will be giving the money considering; 
+		a) The application has ilimited coins and bills
+		b) The amounts for coins are 5, 10, 20
+		c) The amounts for bills are 50, 100, 200, 500
+	- The money must be given in the less possible coins and bills
+	
+Instructions:
+- Use your best programming skills
+- Use C / C++ conventions
+- Comment code
+- If you are a git user, create the repo, and commit each of the features separately ( This one is a big plus )
+  Download the code from https://github.com/fixxxer/cash.git 
+- When you are finish send a compressed file or send the link of the repo
+
